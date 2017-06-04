@@ -24,7 +24,7 @@ WifiSnifferConfig snifferConfig;
 
 void setupWifiClient() {
 
-  WiFi.begin("ZyXEL_C824", "FPAM4QQLJTL7P");
+  WiFi.begin("", "");
   while(WiFi.status() != WL_CONNECTED) {
     Serial.println("Connecting to WiFi Network...");
     delay(1000);
