@@ -1,0 +1,30 @@
+{
+  "name": "wifi-sniffer-api",
+  "version": "0.1.0",
+  "description": "API for the wifi sniffer",
+  "main": "index.js",
+  "author": "Philipp Weitz",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "6.10.0"
+  },
+  "scripts": {
+    "start": "nodemon --watch ./src ./src/server.js --exec babel-node --presets es2015,stage-2",
+    "lint": "eslint ./src"
+  },
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "hapi": "^16.1.1",
+    "joi": "^10.5.0",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0",
+    "nodemon": "^1.11.0"
+  }
+}
