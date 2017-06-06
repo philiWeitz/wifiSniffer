@@ -67,6 +67,7 @@ class AppView extends React.Component {
             <div>MCU Id</div>
             <div>Signal Strength</div>
             <div>Last Seen</div>
+            <div>Timestamp</div>
           </div>
           <div>
             {devices.map((device) =>

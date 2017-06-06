@@ -3,6 +3,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import styles from './styles.scss';
+import dateUtil from '../../util/dateUtil';
 
 
 const DeviceContainer = ({ device }) => {
@@ -25,6 +26,9 @@ const DeviceContainer = ({ device }) => {
       </div>
       <div>
         {device.lastSeen / 1000} sec
+      </div>
+      <div>
+        {dateUtil.toDate(device.timeStamp)}
       </div>
     </div>
   );

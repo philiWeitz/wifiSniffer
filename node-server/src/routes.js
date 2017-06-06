@@ -53,9 +53,7 @@ const routes = [
         payload: {
           rangeStart: Joi.number().integer(),
           rangeStop: Joi.number().integer(),
-          writeClients: Joi.boolean(),
-          writeBeacons: Joi.boolean(),
-          runLoop: Joi.boolean(),
+          clientPollingTimeInMs: Joi.number().integer(),
         },
       },
     },

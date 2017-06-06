@@ -37,7 +37,7 @@ void readInput() {
       inputBuffer[inputBufferPointer] = '\0';
       
       // push to post queue
-      char* item = new char[inputBufferPointer+1];
+      char* item = new char[inputBufferPointer];
       memcpy(item, inputBuffer, inputBufferPointer+1);
       postQueue.push(item);
       

@@ -6,6 +6,7 @@ const Device = Record({
   mcuId: '',
   signal: 0,
   lastSeen: null,
+  timeStamp: null,
 });
 
 Device.build = (data) => new Device(data);

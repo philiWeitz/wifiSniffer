@@ -1,4 +1,5 @@
 {
   "rangeStart": 1,
-  "rangeStop": 12
+  "rangeStop": 12,
+  "devicePollingTimeInMs": 2000
 }

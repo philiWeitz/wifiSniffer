@@ -18,7 +18,7 @@ void loop() {
 
   if(deviceReadTimer < millis()) {
     Serial.print("DEVICES$");
-    deviceReadTimer = millis() + 2000;
+    deviceReadTimer = millis() + snifferConfig.devicePollingTimeInMs;
   }  
   
   readInput();

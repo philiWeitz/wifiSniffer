@@ -14,8 +14,9 @@
 
 
 struct WifiSnifferConfig {
-  uint8_t rangeStart = 1;
-  uint8_t rangeStop = 1;
+  int rangeStart = 1;
+  int rangeStop = 1;
+  int devicePollingTimeInMs = 2000;
 };
 
 
@@ -24,11 +25,13 @@ WifiSnifferConfig snifferConfig;
 
 void setupWifiClient() {
 
-  WiFi.begin("ZyXEL_C824", "FPAM4QQLJTL7P");
+  WiFi.persistent(false);
+  WiFi.begin("", "");
   while(WiFi.status() != WL_CONNECTED) {
     Serial.println("Connecting to WiFi Network...");
     delay(1000);
   }
+  WiFi.persistent(false);
 }
 
 
@@ -41,7 +44,7 @@ void configureWifiSniffer() {
 }
 
 
-void splitConfig(String payload) {
+void splitConfig(const String payload) {
   char* ch = strtok((char*) payload.c_str(), DELIMITER);
   int rangeStart = atoi(ch);
 
@@ -51,10 +54,20 @@ void splitConfig(String payload) {
   }
   int rangeStop = atoi(ch);
 
+  ch = strtok(NULL, DELIMITER);
+  if(ch == NULL) {
+    return;
+  }
+  int devicePollingTimeInMs = atoi(ch);
+
   // new config found -> set new config
-  if(snifferConfig.rangeStart != rangeStart || snifferConfig.rangeStop != rangeStop) {
+  if(snifferConfig.rangeStart != rangeStart || snifferConfig.rangeStop != rangeStop
+    || snifferConfig.devicePollingTimeInMs != devicePollingTimeInMs) {
+    // write new config
     snifferConfig.rangeStart = rangeStart;
     snifferConfig.rangeStop = rangeStop;
+    snifferConfig.devicePollingTimeInMs = devicePollingTimeInMs;
+
     configureWifiSniffer();
   }
 }
