@@ -7,7 +7,7 @@ let nodeMcuConfig = nodeMcuDefaultConfig;
 const nodeMcuCore = {
 
   getConfig: () => {
-    return _.join(_.values(nodeMcuConfig), ',');
+    return _(nodeMcuConfig).values().join(',');
   },
 
   patchConfig: (config) => {

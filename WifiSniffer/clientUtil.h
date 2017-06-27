@@ -1,3 +1,4 @@
+//#define DEBUG 1
 
 #ifndef __CLIENT_UTIL_H__
 #define __CLIENT_UTIL_H__
@@ -26,6 +27,11 @@ void addDevice(const clientinfo ci) {
 
   // add new client
   if(device == NULL) {
+    #ifdef DEBUG
+      Serial.println("New Client");
+      Serial.println(clientList.size());
+    #endif
+    
     clientList.push_back(ci);
 
   } else {
@@ -39,9 +45,18 @@ void addDevice(const clientinfo ci) {
 void removeOldClients() {
   // TODO: It would be more save to use cbegin and cend
   for (auto it = clientList.begin(); it != clientList.end();) {
-    if((millis() - it->timeStamp) > 30000) {
+    if((millis() - it->timeStamp) > 5000) {
+      #ifdef DEBUG
+        Serial.println("Erase client");
+        Serial.println(clientList.size());
+      #endif
+
       // potential memory leak here!
       clientList.erase(it);
+      // iterator is now invalid! -> calls itself
+      removeOldClients();
+      break;
+      
     } else {
       ++it;
     }

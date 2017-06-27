@@ -1,6 +1,6 @@
 
 import _ from 'lodash';
-
+import Device from '../model/Device';
 
 const DEVICE_TIMEOUT = 30 * 1000;
 
@@ -15,6 +15,7 @@ function cleanUpClients() {
   });
 }
 
+
 const wifiCore = {
 
   processWifiData(wifiData) {
@@ -23,17 +24,18 @@ const wifiCore = {
     console.log(wifiData);
     const splitData = wifiData.split(',');
 
-    if (splitData.length === 5 && splitData[0] === 'd') {
-      const key = `${splitData[1]}-${splitData[2]}`;
+    if (Device.isDevice(splitData)) {
+      const key = Device.createKey(splitData);
+      const device = Device.parseFromCsv(splitData);
 
-      wifiDevices[key] = {
-        mcuId: splitData[1],
-        mac: splitData[2],
-        signal: splitData[3],
-        lastSeen: splitData[4],
-        timeStamp: new Date(),
-      };
+      if (!device) {
+        return null;
+      }
+
+      wifiDevices[key] = device;
+      return wifiDevices[key];
     }
+    return null;
   },
 
   getDevices() {

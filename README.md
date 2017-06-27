@@ -10,6 +10,11 @@
 
 ## Setup
 - upload the WifiSniffer to one ESP8266
+- navigate to the ArduinoServer and create a "credentials.h" file
+- inside the "credentials.h" add:
+  - const char* WIFI_SSID = "<your wifi name>";
+  - const char* WIFI_PASSWORD = "<your wifi password>";
+  - const String SERVER_ADDRESS = "<server address e.g. http://192.168.1.230:8080>";
 - upload the ArduinoServer to the second one
 - connect both to a power supply and connect the Serial port of both ESP8266's (RX and TX)
 - navigate to the node-server directory

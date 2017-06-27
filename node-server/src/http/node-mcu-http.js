@@ -1,14 +1,23 @@
 
+import boom from 'boom';
 import nodeMcuCore from '../core/node-mcu-core';
 
 const nodeMcuHttp = {
 
   getConfig: (req, res) => {
-    res(nodeMcuCore.getConfig());
+    const config = nodeMcuCore.getConfig();
+    if (!config) {
+      boom.notFound('Configuration was not found');
+    }
+    res(config);
   },
 
   patchConfig: (req, res) => {
-    res(nodeMcuCore.patchConfig(req.payload));
+    const patchedConfig = nodeMcuCore.patchConfig(req.payload);
+    if (!patchedConfig) {
+      boom.notFound('Unable to patch configuration');
+    }
+    res(patchedConfig);
   },
 
 };

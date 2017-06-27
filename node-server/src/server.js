@@ -1,6 +1,7 @@
 
 const Hapi = require('hapi');
 const routes = require('./routes');
+const boomDataPayloadEvent = require('./hapi/events/boom-event');
 
 const server = new Hapi.Server();
 
@@ -13,6 +14,8 @@ server.connection({
 });
 
 server.route(routes);
+
+server.ext('onPreResponse', boomDataPayloadEvent);
 
 server.start((err) => {
   if (err) {

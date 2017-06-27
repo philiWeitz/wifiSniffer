@@ -53,7 +53,7 @@ const routes = [
         payload: {
           rangeStart: Joi.number().integer(),
           rangeStop: Joi.number().integer(),
-          clientPollingTimeInMs: Joi.number().integer(),
+          devicePollingTimeInMs: Joi.number().integer(),
         },
       },
     },

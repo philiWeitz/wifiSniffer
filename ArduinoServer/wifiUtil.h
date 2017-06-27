@@ -6,12 +6,13 @@
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266HTTPClient.h>
 
+#include "credentials.h"
+
 #define DELIMITER ","
 
-#define HEALTH_CHECK_URL "http://192.168.1.230:8080/health"
-#define POST_DATA_URL "http://192.168.1.230:8080/data"
-#define CONFIG_URL "http://192.168.1.230:8080/nodemcu/config"
-
+String HEALTH_CHECK_URL = SERVER_ADDRESS + "/health";
+String POST_DATA_URL = SERVER_ADDRESS + "/data";
+String CONFIG_URL = SERVER_ADDRESS + "/nodemcu/config";
 
 struct WifiSnifferConfig {
   int rangeStart = 1;
@@ -26,7 +27,7 @@ WifiSnifferConfig snifferConfig;
 void setupWifiClient() {
 
   WiFi.persistent(false);
-  WiFi.begin("", "");
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   while(WiFi.status() != WL_CONNECTED) {
     Serial.println("Connecting to WiFi Network...");
     delay(1000);
