@@ -9,6 +9,8 @@
 - 2 ESP8266 (NodeMCU)
 
 ## Setup
+- open Arduino IDE and go to tools -> board -> boards manager
+- search for "ESP8266" and install the board
 - upload the WifiSniffer to one ESP8266
 - navigate to the ArduinoServer and create a "credentials.h" file
 - inside the "credentials.h" add:
