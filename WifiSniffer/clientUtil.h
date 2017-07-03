@@ -75,7 +75,7 @@ void printDeviceList(const String wifiSnifferId, const char stopChar) {
     Serial.print(",");
     Serial.print(millis() - it->timeStamp);
     Serial.print(";");
-    delay(30);
+    delay(20);
   }
   Serial.print(stopChar);
 }

@@ -112,9 +112,10 @@ bool postData(const char* body) {
       Serial.println(httpCode);
       Serial.println(http.getString());
     }
-    
+
+    delay(1);
     http.end();
-    delay(10);
+    delay(5);
   }
   
   return result;
@@ -142,8 +143,10 @@ bool getConfig() {
       Serial.println(httpCode);
       Serial.println(http.getString());
     }
- 
+
+    delay(1);
     http.end();
+    delay(5);
   }
   
   return result;
